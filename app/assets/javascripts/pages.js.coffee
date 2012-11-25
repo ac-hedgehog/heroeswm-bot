@@ -3,6 +3,10 @@ cool_ajax_request = () ->
         type: "POST"
         url: "pages/cool_ajax"
         success: (data) ->
-            $("#cool-results").html data['html']
+            if data['status'] == 'connected'
+                result = "Процесс пошёл"
+            else
+                result = "Что-то не так"
+            $("#cool-results").html result
 
 $("#cool-button").live "click", cool_ajax_request
