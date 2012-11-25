@@ -1,7 +1,5 @@
 <div id="cool-wrapper">
-  <%= form_for :login_form, url: { controller:  :pages,
-                                   action:      :make_money },
-                            method: :post do |f| %>
+  <%= form_for @game_user do |f| %>
     <div class="field">
       <%= f.label :login, "Логин" %>
       <%= f.text_field :login %>

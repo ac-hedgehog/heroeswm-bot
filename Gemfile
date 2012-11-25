@@ -6,6 +6,8 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem "watir-webdriver", "~> 0.6.1"
+gem 'whenever', :require => false
+gem "headless"
 
 # Gems used only for assets and not required
 # in production environments by default.

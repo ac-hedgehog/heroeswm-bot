@@ -32,6 +32,7 @@ GEM
     builder (3.0.4)
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
+    chronic (0.6.7)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -45,6 +46,7 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     ffi (1.2.0)
+    headless (0.3.1)
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
@@ -119,12 +121,16 @@ GEM
     watir-webdriver (0.6.1)
       selenium-webdriver (>= 2.18.0)
     websocket (1.0.4)
+    whenever (0.7.3)
+      activesupport (>= 2.3.4)
+      chronic (~> 0.6.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  headless
   jquery-rails
   pg
   rails (= 3.2.8)
@@ -133,3 +139,4 @@ DEPENDENCIES
   thin
   uglifier (>= 1.0.3)
   watir-webdriver (~> 0.6.1)
+  whenever
