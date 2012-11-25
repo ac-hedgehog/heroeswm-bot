@@ -1,6 +1,6 @@
 HeroeswmBot::Application.routes.draw do
   get "pages/index"
-  post "pages/cool_ajax"
+  post "pages/make_money"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

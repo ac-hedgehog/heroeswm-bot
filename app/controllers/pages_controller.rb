@@ -1,8 +1,7 @@
 # coding: utf-8
 class PagesController < ApplicationController
-  def cool_ajax
-    respond_to do |format|
-      format.json { render json: MakeMoney::start("Фубини", "Det112358") }
-    end
+  def make_money
+    @game_status = MakeMoney::start(params[:login_form])
+    render :index
   end
 end

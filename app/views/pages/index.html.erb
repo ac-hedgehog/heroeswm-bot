@@ -1,4 +1,18 @@
 <div id="cool-wrapper">
-  <%= button_tag "Сделать зашибенно", id: "cool-button" %>
-  <div id="cool-results"></div>
+  <%= form_for :login_form, url: { controller:  :pages,
+                                   action:      :make_money },
+                            method: :post do |f| %>
+    <div class="field">
+      <%= f.label :login, "Логин" %>
+      <%= f.text_field :login %>
+    </div>
+    <div class="field">
+      <%= f.label :pass, "Пароль" %>
+      <%= f.password_field :pass %>
+    </div>
+    <%= f.button "Сделать зашибенно" %>
+  <% end %>
+  <div id="cool-results">
+    <%= @game_status %>
+  </div>
 </div>
