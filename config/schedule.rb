@@ -18,7 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-set :output, "~/program_files/projects/rails_projects/heroeswm-bot/log/cron_log.log"
+set :output, "~/program_files/rails_projects/heroeswm-bot/log/cron_log.log"
 every 5.minutes do
-  runner "MakeMoney.make", environment: :development
+  runner "MakeMoney.test", environment: :development
 end
