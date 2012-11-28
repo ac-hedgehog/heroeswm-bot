@@ -1,6 +1,5 @@
 HeroeswmBot::Application.routes.draw do
-  resources :game_users, :only => [:new, :create] do
-  end
+  resources :game_users, :only => [:new, :create]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
