@@ -26,33 +26,10 @@ class MakeMoney
     @@browser.input(title: 'Войти в игру!').click
   end
   
-  def self.connect_to_last_game(connections_number = 1)
-    return false if connections_number == 0 || Time.now > @@start_time + 4.minutes
-    print "Попытка зайти на прошлую игру."
-    @@browser.goto ROULETTE_URL
-    print " (#{@@browser.url})."
-    links = @@browser.a(href: 'allroul.php').parent.as
-    if links.last.exist?
-      print "."
-      links.last.click
-      print "."
-      if @@browser.url.include? "inforoul"
-        puts " Успех."
-        return true
-      end
-    end
-    puts " Неудача."
-    self.connect_to_last_game(connections_number - 1)
-  end
-  
   def self.get_rate
-    #return BEST_MIN_RATE unless self.connect_to_last_game(5)
     @@browser.goto ROULETTE_URL
-    #@@browser.a(href: 'allroul.php').parent.as.last.click
-    @@browser.a(text: 'Прошлая игра').click
-    puts @@browser.url
-    
-    a = @@browser.a(:text => /#{@@game_user.login}/)
+    @@browser.a(text: /Прошлая игра/).click
+    a = @@browser.a(text: /#{@@game_user.login}/)
     if a.exist?
       row = a.parent.parent
       last_rate = row.tds.first.b.text.sub(',', '').to_i
@@ -87,6 +64,7 @@ class MakeMoney
   
   def self.make
     @@game_user = GameUser.last
+    sleep 2.minutes if Time.now.min % 10 == 0
     @@start_time = Time.now
     
     self.start
