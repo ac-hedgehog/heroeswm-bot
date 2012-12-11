@@ -1,0 +1,30 @@
+<div id="cool-wrapper">
+  <%= form_for @user_session do |f| %>
+    <div class="field">
+      <%= f.label :login, "Логин" %>
+      <%= f.text_field :login %>
+    </div>
+    <div class="field">
+      <%= f.label :pass, "Пароль" %>
+      <%= f.password_field :pass %>
+    </div>
+    <div class="field">
+      <%= f.label :start_time, "Начать играть в" %>
+      <%= f.time_select :start_time, combined: true, default: start_time_for_select,
+                                     minute_interval: 10 %>
+    </div>
+    <div class="field">
+      <%= f.label :end_time, "Закончить играть в" %>
+      <%= f.time_select :end_time, combined: true, default: end_time_for_select,
+                                   minute_interval: 10 %>
+    </div>
+    <%= f.button "Сделать зашибенно", value: :start %>
+    <%= f.button "Закругляться",      value: :slowstop %>
+    <%= f.button "Прервать",          value: :stop %>
+  <% end %>
+  <div id="cool-results">
+    <% @user_session.game_sessions.each do |game_session| %>
+      Текущие затраты: <%= game_session.bet_field %>
+    <% end %>
+  </div>
+</div>

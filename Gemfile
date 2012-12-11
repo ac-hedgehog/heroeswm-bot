@@ -8,6 +8,8 @@ gem 'rails', '3.2.8'
 gem "watir-webdriver", "~> 0.6.1"
 gem 'whenever', :require => false
 gem "headless"
+gem "enumerated_attribute"
+gem "combined_time_select", "~> 0.0.1"
 
 # Gems used only for assets and not required
 # in production environments by default.
