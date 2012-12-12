@@ -16,11 +16,11 @@ ActiveRecord::Schema.define(:version => 20121211132639) do
   create_table "game_sessions", :force => true do |t|
     t.integer  "user_session_id"
     t.string   "strategy"
-    t.integer  "account"
     t.string   "bet_field"
     t.integer  "room_bets",       :default => 0
+    t.integer  "bets_reps_count", :default => 1
     t.integer  "total_bets",      :default => 0
-    t.integer  "winnings",        :default => 0
+    t.integer  "winnings"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end
@@ -28,10 +28,11 @@ ActiveRecord::Schema.define(:version => 20121211132639) do
   create_table "user_sessions", :force => true do |t|
     t.string   "login"
     t.string   "pass"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "starting_bet", :default => 125
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
 end

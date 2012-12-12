@@ -43,7 +43,16 @@ class MakeMoney
     end
   end
   
+  def self.choice_strategy
+    @@browser.a(text: /История игр/).click
+    history = @@browser.table(class: 'wb').fonts.map { |font|
+      [font.text.to_i, GameSession::COLORS[font.color]]
+    }
+    @@game_session.choice_strategy_by history
+  end
+  
   def self.play_in_roulette
+    self.choice_strategy if @@game_session.room_bets == 0
     rate = self.get_rate
     @@browser.goto ROULETTE_URL
     @@browser.text_field(name: 'bet').set rate
@@ -62,8 +71,19 @@ class MakeMoney
     end
   end
   
+  def self.create_game_session
+    GameSession.create! user_session_id: @@user_session.id
+  end
+  
+  def self.get_session
+    @@user_session = UserSession.at(Time.now).last
+    return false unless @@user_session
+    @@game_session = @@user_session.game_sessions.created_at_desc.opened.first
+    @@game_session = self.create_game_session unless @@game_session
+  end
+  
   def self.make
-    @@game_user = GameUser.last
+    return false unless self.get_session
     sleep 2.minutes if Time.now.min % 10 == 0
     @@start_time = Time.now
     
